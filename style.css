@@ -1,0 +1,61 @@
+/* 1. The Master Container */
+.container {
+    display: flex;
+    flex-direction: column; /* Stack Top Box above the Row */
+    gap: 20px;              /* The 'magic' space between boxes */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#top-box, #left-box, #right-box {
+    background-color: lightgrey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* 2. The Top Box (Full Width) */
+#top-box {
+    background-color: lightgrey;
+    padding: 15px;
+    display: flex;
+    /* No position: absolute needed! It fills the container width naturally. */
+}
+
+#audio-control {
+    margin-left: auto;
+}
+
+/* 3. The Wrapper for the Bottom Two Boxes */
+.bottom-row {
+    display: flex;
+    flex-direction: row;    /* Put Left and Right next to each other */
+    gap: 20px;
+    width: 100%;
+    height: auto;          /* Let height be determined by content */
+    align-items: flex-start; /* Aligns the top of the boxes */
+}
+
+#left-box {
+    flex: 3;                /* Takes 3 parts of the space (~30%) */
+    background-color: lightgrey;
+    padding: 15px;
+    min-height: 500px;
+}
+
+#right-box {
+    flex: 7;                /* Takes 7 parts of the space (~70%) */
+    background-color: lightgrey;
+    padding: 15px;
+    min-height: 500px;
+}
+
+/* 4. Responsive (Mobile) */
+@media screen and (max-width: 768px) {
+    .bottom-row {
+        flex-direction: column; /* Stacks Left and Right on top of each other */
+    }
+    #top-box{
+        height: auto; /* Let height be determined by content */
+    }
+}
