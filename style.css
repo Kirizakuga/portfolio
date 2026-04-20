@@ -9,14 +9,14 @@
 }
 
 #top-box, #left-box, #right-box {
-    background-color: lightgrey;
+    background-color: var(--box-color);
     padding: 15px;
     border-radius: 10px;
 }
 
 /* 2. The Top Box (Full Width) */
 #top-box {
-    background-color: lightgrey;
+    background-color: var(--box-color);
     padding: 15px;
     display: flex;
     /* No position: absolute needed! It fills the container width naturally. */
@@ -38,17 +38,46 @@
 
 #left-box {
     flex: 3;                /* Takes 3 parts of the space (~30%) */
-    background-color: lightgrey;
+    background-color: var(--box-color);
     padding: 15px;
     min-height: 500px;
 }
 
 #right-box {
     flex: 7;                /* Takes 7 parts of the space (~70%) */
-    background-color: lightgrey;
+    background-color: var(--box-color);
     padding: 15px;
     min-height: 500px;
 }
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* This centers your container on huge screens */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 4. Responsive (Mobile) */
 @media screen and (max-width: 768px) {
@@ -58,4 +87,18 @@
     #top-box{
         height: auto; /* Let height be determined by content */
     }
+}
+
+:root{
+    --bg-color: #3b4a62;
+    --box-color: #313e55;
+    --accent-color: #fe9841;
+    --action-color: #bbe9e0;
+}
+
+.text-primary {
+    color: var(--accent-color);
+    font-family: Jetbrains Mono, monospace;
+    font-size: 18px;
+    font-weight: 100;
 }
