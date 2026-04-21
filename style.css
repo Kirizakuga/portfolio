@@ -115,7 +115,7 @@ body{
     font-size: 18px;
     font-weight: 100;
 }
-.text-hightlight{
+.text-highlight{
     color: var(--action-color);
     font-family: Jetbrains Mono, monospace;
     font-size: 18px;
