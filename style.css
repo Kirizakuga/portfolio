@@ -60,7 +60,20 @@ body{
     justify-content: center; /* This centers your container on huge screens */
 }
 
+#img-holder img{
+    border: 4px solid var(--accent-color);
+    border-radius: 10px;
+    max-width: 70%;
+    height: auto;
+}
 
+#img-holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 20px;
+}
 
 
 
@@ -102,3 +115,16 @@ body{
     font-size: 18px;
     font-weight: 100;
 }
+.text-hightlight{
+    color: var(--action-color);
+    font-family: Jetbrains Mono, monospace;
+    font-size: 18px;
+    font-weight: 100;
+}
+.text-double-highlight{
+    color: var(--action-color);
+    font-family: Jetbrains Mono, monospace;
+    font-size: 24px;
+    font-weight: 100;
+}
+
