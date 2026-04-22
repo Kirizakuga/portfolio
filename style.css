@@ -48,6 +48,7 @@
     background-color: var(--box-color);
     padding: 15px;
     min-height: 500px;
+    padding-left: 30px;
 }
 
 body{
@@ -109,6 +110,7 @@ body{
 @media screen and (max-width: 768px) {
     .bottom-row {
         flex-direction: column; /* Stacks Left and Right on top of each other */
+        height: auto; /* Let height be determined by content */
     }
     #top-box{
         height: auto; /* Let height be determined by content */
@@ -138,6 +140,6 @@ body{
     color: var(--action-color);
     font-family: JetBrains Mono, monospace;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
