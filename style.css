@@ -49,6 +49,8 @@
     padding: 15px;
     min-height: 500px;
     padding-left: 30px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 body{
@@ -105,15 +107,25 @@ body{
 
 
 
-
 /* 4. Responsive (Mobile) */
 @media screen and (max-width: 768px) {
     .bottom-row {
         flex-direction: column; /* Stacks Left and Right on top of each other */
+        align-items: stretch;
         height: auto; /* Let height be determined by content */
     }
     #top-box{
         height: auto; /* Let height be determined by content */
+    }
+    #left-box {
+        min-height: auto; /* Optional: removes the 500px empty space on mobile */
+        white-space: pre-wrap;     /* Keeps your JSON indents but allows wrapping */
+        overflow-wrap: break-word; /* Forces long text like "Quan Hieu" to wrap to the next line */
+    }
+    
+    #right-box {
+        min-height: auto;
+        padding-left: 15px; /* Resetting that 30px left padding you had for desktop */
     }
 }
 
@@ -129,6 +141,7 @@ body{
     font-family: JetBrains Mono, monospace;
     font-size: 18px;
     font-weight: 400;
+    line-height: 1.8;
 }
 .text-highlight{
     color: var(--action-color);
