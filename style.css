@@ -92,6 +92,23 @@ body{
     font-weight: 500;
 }
 
+#contact{
+    text-align: center;
+}
+
+.social-icon{
+    width: 40px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
+}
+
+.social-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
 
 
