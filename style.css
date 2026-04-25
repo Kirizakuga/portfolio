@@ -100,6 +100,7 @@ body{
     width: 40px;
     height: auto;
     filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
+    text-decoration: none;
 }
 
 .social-container{
