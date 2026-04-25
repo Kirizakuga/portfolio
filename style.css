@@ -112,7 +112,44 @@ body{
 }
 
 
+/* The main popup box */
+#popup {
+    display: none; /* Keeps it hidden until Javascript triggers it */
+    position: fixed; /* Detaches it from the normal document flow */
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); /* This perfectly centers the box */
+    
+    /* Theming to match your code editor vibe */
+    background-color: #292d3e; /* Matches your dark panel backgrounds */
+    color: #a6accd; /* Light grey text */
+    border: 2px solid #82aaff; /* Blue accent border */
+    border-radius: 8px; /* Matches your image and code block corners */
+    padding: 30px;
+    width: 350px; 
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Drops a shadow so it pops out */
+    z-index: 1000; /* Forces it to stay on top of everything else */
+    
+    font-family: 'JetBrains Mono', monospace;
+}
 
+/* The [X] close button */
+#clsBtn {
+    color: #ff5370; /* A nice terminal error-red */
+    font-weight: 600;
+    position: absolute; /* Positions it relative to the inside of the popup */
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Adds a nice hover effect to the close button */
+#clsBtn:hover {
+    color: #f07178;
+    text-shadow: 0 0 8px rgba(255, 83, 112, 0.6); /* Little neon glow effect */
+}
 
 
 
