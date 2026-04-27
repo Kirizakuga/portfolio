@@ -141,7 +141,9 @@ body{
     border: 2px solid var(accent-color);
 }
 
-
+#kirizakuga:hover, #projects:hover, #blog:hover{
+    color: var(--accent-color);
+}
 
 
 
