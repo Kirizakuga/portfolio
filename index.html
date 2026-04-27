@@ -10,58 +10,63 @@
     <title>Kouu's Documentation</title>
 </head>
 <body>
-    <div class="container">
-        <div id="top-box">
-            <p class="text-double-highlight" id="openBtn">
-                ~./home/kirizakuga
+<div class="container">
+    <div id="top-box">
+        <div class="text-double-highlight" id="openBtn">
+            ~./home/<div class="anchor-txt" style="display: inline-block; position: relative; cursor: pointer;">kirizakuga
+
+                <div id="popup" class="dropdown-menu">
+                    <a id="projects" class="nav-section" href="project.html">
+                        <p>.projects.cfg</p>
+                    </a>
+                    <a id="blog" class="nav-section" href="blogs.html">
+                        <p>.blog.cfg</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom-row">
+        <div id="left-box">
+            <div id="img-holder">
+                <img src="meomeo.jpg" alt="this is an image, if you can see this note means your internet is sucks">
+            </div>
+            <p class="text-highlight" id="image-caption">this is an image about an introvert who want his online presence to be a cat</p>
+            <br>
+            <div class="social-container">
+                <a href="https://github.com/Kirizakuga">
+                    <img src="./icon/mark.svg" class="social-icon">
+                </a>
+
+                <a href="https://discordapp.com/users/905485055168770108">
+                    <img src="/icon/discord.svg" class="social-icon">
+                </a>
+            </div>
+        </div>
+        <div id="right-box">
+            <p class="text-primary" id="about-me-title">
+                <span class="text-highlight">about-me</span> {
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"name": "Quan Hieu" <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"aliases": ["Kou", "kirizakuga"] <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"pronouns": "he/him"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"age": 18 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"location": "Ho Chi Minh, Vietnam" <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"b.cs": <span class="text-highlight">@PTIT-HCM</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"interests": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"languages": ["python", "html", "css", "cpp", "javascript", "bash"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"misc": ["MLOps", "Machine Learning", "linux", "Data Engineering"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"framework": ["PyTorch", "Tensorflow", "Flask"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"games-i-play": ["valorant", "minecraft", "tft", "league of legends", "osu", "hollow knight - silksong"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"works": ["techlead at ITMC"]<br>
+                }
             </p>
         </div>
-        <div class="bottom-row">
-            <div id="left-box">
-                <div id="img-holder">
-                    <img src="meomeo.jpg" alt="this is an image, if you can see this note means your internet is sucks">
-                </div>
-                <p class="text-highlight" id="image-caption">this is an image about an introvert who want his online presence to be a cat</p>
-                <br>
-                <div class="social-container">
-                    <a href="https://github.com/Kirizakuga">
-                        <img src="./icon/mark.svg" class="social-icon">
-                    </a>
-
-                    <a href="https://discordapp.com/users/905485055168770108">
-                        <img src="/icon/discord.svg" class="social-icon">
-                    </a>
-                </div>
-            </div>
-            <div id="right-box">
-                <p class="text-primary" id="about-me-title">
-                    <span class="text-highlight">about-me</span> {
-                    <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"name": "Quan Hieu" <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"aliases": ["Kou", "kirizakuga"] <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"pronouns": "he/him"<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"age": 18 <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"location": "Ho Chi Mnh, Vietnam" <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"b.cs": <span class="text-highlight">@PTIT-HCM</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"interests": {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"languages": ["python", "html", "css", "cpp", "javascrips", "bash"]<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"misc": ["MLOps", "Machine Learning", "linux", "Data Engineering"]<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"framework": ["PyTorch", "Tensorflow", "Flask"]<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"games-i-play": ["valorant", "minecraft", "tft", "league of legend", "osu", "hollow knight - silksong"]<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"works": ["techlead at ITMC"]<br>
-                    }
-
-                    
-                </p>
-            </div>
-        </div>
     </div>
+</div>
 
-    <div id="popup">
-        <p> this is a test popup</p>
-        <span id="clsBtn" style="cursor: pointer; float: right; color: red;">[X]</span>
-    </div>
-    <script src = "scripts.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>
