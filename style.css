@@ -46,9 +46,8 @@
 #right-box {
     flex: 7;                /* Takes 7 parts of the space (~70%) */
     background-color: var(--box-color);
-    padding: 15px;
     min-height: 500px;
-    padding-left: 30px;
+    padding: 15px 15px 15px 30px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -100,7 +99,6 @@ body{
     width: 40px;
     height: auto;
     filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
-    text-decoration: none;
 }
 
 .social-container{
@@ -135,13 +133,17 @@ body{
 
 /* Fixed the typo from nav-secton */
 .nav-section {
+    display: flex;
+    align-items: center;
     background-color: var(--box-color);
     text-decoration: none; /* Removes the default blue underline from <a> tags */
     color: inherit; /* Keeps your terminal text color */
-    border: 2px solid var(accent-color);
+}
+.nav-section p{
+    margin: 5px;
 }
 
-#kirizakuga:hover, #projects:hover, #blog:hover{
+#kirizakuga:hover, #projects:hover, #blog:hover, #about:hover {
     color: var(--accent-color);
 }
 
@@ -172,6 +174,13 @@ body{
     #right-box {
         min-height: auto;
         padding-left: 15px; /* Resetting that 30px left padding you had for desktop */
+    }
+    .social-container{
+        white-space: normal;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
     }
 }
 
