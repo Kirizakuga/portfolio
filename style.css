@@ -13,6 +13,7 @@
     padding: 15px;
     border-radius: 10px;
     display: flex;
+    flex-direction: row;
 }
 
 #audio-control {
@@ -94,6 +95,12 @@ body{
     filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
 }
 
+.social-icon-small{
+    width: 30px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
+}
+
 .social-container{
     display: flex;
     flex-direction: row;
@@ -102,43 +109,21 @@ body{
     gap: 20px;
 }
 
-
-/* The main popup box */
-#popup {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 8px;
-    background-color: var(--box-color);
-    padding: 20px 15px 15px 15px; /* Added a bit more padding at the top for the [X] */
-    border: 2px solid var(--accent-color);
-    z-index: 100;
-    /* Added a minimum width so your menu doesn't get squished */
-    min-width: 120px;
-}
-
-.dropdown-menu {
+.nav-icon{
+    flex: 4;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    gap: 10px; /* Adds nice spacing between "Projects" and "Blog" */
-}
-
-/* Fixed the typo from nav-secton */
-.nav-section {
-    display: flex;
+    justify-content: right;
     align-items: center;
-    background-color: var(--box-color);
-    text-decoration: none; /* Removes the default blue underline from <a> tags */
-    color: inherit; /* Keeps your terminal text color */
-}
-.nav-section p{
-    margin: 5px;
+    height: 100%;
+    margin-right: 49px;
 }
 
-#kirizakuga:hover, #projects:hover, #blog:hover, #about:hover {
-    color: var(--accent-color);
-}
+
+
+
+
+
 
 .bottom-row2{
     display: flex;
