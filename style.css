@@ -14,6 +14,8 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 #audio-control {
@@ -96,7 +98,7 @@ body{
 }
 
 .social-icon-small{
-    width: 30px;
+    width: 25px;
     height: auto;
     filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
 }
