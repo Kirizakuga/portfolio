@@ -77,16 +77,7 @@ portfolio-root/
 ├── index.html
 ├── meomeo.jpg
 ├── scripts.js
-├── style.css
-├── docs/
-│   ├── architect.md
-│   ├── tech-spec.md
-│   ├── prd.md
-│   ├── webhooks.md
-│   └── changelog/
-│       ├── history.md
-│       └── pending.md
-└── .antigravityignore
+└── style.css
 ```
 
 ---
