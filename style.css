@@ -1,12 +1,65 @@
-/* 1. The Master Container */
+/* design token, system var */
+
+:root {
+    /* default dark mode colors */
+    --bg-color: #3b4a62;
+    --box-color: #313e55;
+    --accent-color: #fe9841;
+    --action-color: #bbe9e0;
+}
+
+body.dark-mode {
+    /* default light mode colors */
+    --bg-color: #d8d2c3;
+    --box-color: #cdc0af;
+    --accent-color: #8b6f5c;
+    --action-color: #513a2a;
+}
+
+
+/* base styling*/
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+
+/* layout and containers */
+
 .container {
     display: flex;
-    flex-direction: column; /* Stack Top Box above the Row */
-    gap: 20px;              /* The 'magic' space between boxes */
+    flex-direction: column;
+    gap: 20px;
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
 }
+
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    border-radius: 10px;
+}
+
+.bottom-row2 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+/* individual grid components/cards */
 
 #top-box {
     background-color: var(--box-color);
@@ -17,21 +70,6 @@
     align-items: center;
     justify-content: center;
     gap: 40px;
-}
-
-#audio-control {
-    margin-left: auto;
-}
-
-/* 3. The Wrapper for the Bottom Two Boxes */
-.bottom-row {
-    display: flex;
-    flex-direction: row;    /* Put Left and Right next to each other */
-    gap: 20px;
-    width: 100%;
-    height: auto;          /* Let height be determined by content */
-    align-items: flex-start; /* Aligns the top of the boxes */
-    border-radius: 10px;
 }
 
 #left-box {
@@ -45,38 +83,60 @@
 }
 
 #right-box {
-    flex: 7;                /* Takes 7 parts of the space (~70%) */
     background-color: var(--box-color);
-    min-height: 500px;
     padding: 15px 15px 15px 30px;
+    border-radius: 10px;
+    flex: 7;
+    min-height: 500px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.sub-container {
+    background-color: var(--box-color);
+    padding: 10px;
     border-radius: 10px;
-}
-
-body{
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    background-attachment: fixed;
-    min-height: 100vh;
+    flex: 10;
+    min-height: 7px;
     display: flex;
-    justify-content: center; /* This centers your container on huge screens */
+    flex-direction: column;
 }
 
-#img-holder img{
-    border: 4px solid var(--accent-color);
-    border-radius: 10px;
-    max-width: 70%;
-    height: auto;
+/* theme transition rules for containers */
+#top-box,
+#left-box,
+#right-box,
+.sub-container {
+    transition: background-color 0.3s ease;
 }
 
-#img-holder{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding-top: 20px;
+
+/* typography */
+
+.text-primary {
+    color: var(--accent-color);
+    font-family: JetBrains Mono, monospace;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    transition: color 0.3s ease;
+}
+
+.text-highlight {
+    color: var(--action-color);
+    font-family: JetBrains Mono, monospace;
+    font-size: 18px;
+    font-weight: 400;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-double-highlight {
+    color: var(--action-color);
+    font-family: JetBrains Mono, monospace;
+    font-size: 24px;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 #image-caption {
@@ -87,25 +147,124 @@ body{
     font-family: JetBrains Mono, monospace;
     font-size: 16px;
     font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-#contact{
+
+/* image containers and frames */
+#img-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 20px;
+}
+
+#img-holder img {
+    border: 4px solid var(--accent-color);
+    border-radius: 10px;
+    max-width: 70%;
+    height: auto;
+    transition: border-color 0.3s ease;
+}
+
+/* audio and layout utilities */
+#audio-control {
+    margin-left: auto;
+}
+
+#LD-mode {
+    margin-left: auto;
+}
+
+/* theme toggle button */
+#theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.theme-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color: var(--action-color);
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+/* moon-sun display */
+.sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+.moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* light mode display */
+body.dark-mode .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+body.dark-mode .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+/* hover and active micro-animations */
+#theme-toggle:hover .moon-icon {
+    transform: scale(1.1) rotate(-15deg);
+}
+
+body.dark-mode #theme-toggle:hover .sun-icon {
+    transform: scale(1.1) rotate(15deg);
+}
+
+#theme-toggle:active .theme-icon {
+    transform: scale(0.9);
+}
+
+#nav-links {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex: 4;
+    height: 100%;
+    margin-right: 49px;
     text-align: center;
 }
 
-.social-icon{
-    width: 40px;
-    height: auto;
-    filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
+#contact {
+    text-align: center;
 }
 
-.social-icon-small{
-    width: 25px;
-    height: auto;
-    filter: brightness(0) saturate(100%) invert(90%) sepia(34%) saturate(191%) hue-rotate(108deg) brightness(95%) contrast(93%);         /* https://angel-rs.github.io/css-color-filter-generator/ */
+/* navigation */
+a:hover .text-highlight {
+    color: var(--accent-color);
+    transform: translateY(-3px) scale(1.05);
+    cursor: pointer;
 }
 
-.social-container{
+a:active .text-highlight {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* social media */
+.social-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -113,97 +272,97 @@ body{
     gap: 20px;
 }
 
-.nav-icon{
-    flex: 4;
-    text-align: center;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    height: 100%;
-    margin-right: 49px;
+.social-icon {
+    width: 40px;
+    height: auto;
+    color: var(--action-color);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bottom-row2{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-.sub-container{
-    background-color: var(--box-color);
-    padding: 10px;
-    border-radius: 10px;
-    flex: 10;
-    min-height: 7px;
-    display: flex;
-    flex-direction: column;
+.social-icon-small {
+    width: 25px;
+    height: auto;
+    color: var(--action-color);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* fill */
+.social-icon path,
+.social-icon-small path {
+    fill: currentColor;
+}
+
+/* hovering */
+a:hover .social-icon,
+a:hover .social-icon-small {
+    color: var(--accent-color);
+    transform: translateY(-3px) scale(1.05);
+}
+
+a:active .social-icon,
+a:active .social-icon-small {
+    transform: translateY(-1px) scale(0.98);
+}
 
 
+/* responsive design */
 
-
-
-
-
-
-/* 4. Responsive (Mobile) */
 @media screen and (max-width: 768px) {
-    .bottom-row {
-        flex-direction: column; /* Stacks Left and Right on top of each other */
-        align-items: stretch;
-        height: auto; /* Let height be determined by content */
-    }
-    #top-box{
-        height: auto; /* Let height be determined by content */
-    }
-    #left-box {
-        min-height: auto; /* Optional: removes the 500px empty space on mobile */
-        white-space: pre-wrap;     /* Keeps your JSON indents but allows wrapping */
-        overflow-wrap: break-word; /* Forces long text like "Quan Hieu" to wrap to the next line */
-    }
 
-    #right-box {
-        min-height: auto;
-        padding-left: 15px; /* Resetting that 30px left padding you had for desktop */
-    }
-    .social-container{
-        white-space: normal;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-
-    }
-    .bottom-row, .bottom-row2 {
+    .bottom-row,
+    .bottom-row2 {
         flex-direction: column;
         align-items: stretch;
         height: auto;
     }
+
+    #top-box {
+        height: auto;
+    }
+
+    #left-box {
+        min-height: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
+
+    #right-box {
+        min-height: auto;
+        padding-left: 15px;
+    }
+
+    .social-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        white-space: normal;
+    }
 }
 
-:root{
-    --bg-color: #3b4a62;
-    --box-color: #313e55;
-    --accent-color: #fe9841;
-    --action-color: #bbe9e0;
+/* view transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }
 
-.text-primary {
-    color: var(--accent-color);
-    font-family: JetBrains Mono, monospace;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.8;
-}
-.text-highlight{
-    color: var(--action-color);
-    font-family: JetBrains Mono, monospace;
-    font-size: 18px;
-    font-weight: 400;
-}
-.text-double-highlight{
-    color: var(--action-color);
-    font-family: JetBrains Mono, monospace;
-    font-size: 24px;
-    font-weight: 600;
+/* view-transition */
+::view-transition-new(root) {
+    z-index: 9999;
+    animation: circular-reveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+/* view-transition */
+@keyframes circular-reveal {
+    from {
+        clip-path: circle(4px at var(--clip-x, 50%) var(--clip-y, 50%));
+    }
+
+    to {
+        clip-path: circle(var(--clip-r, 100%) at var(--clip-x, 50%) var(--clip-y, 50%));
+    }
+}
