@@ -58,6 +58,12 @@ body {
     gap: 20px;
 }
 
+.terminal-row {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
 
 /* individual grid components/cards */
 
@@ -238,6 +244,14 @@ body.dark-mode #theme-toggle:hover .sun-icon {
     justify-content: center;
 }
 
+#nav-links a {
+    text-decoration: none;
+}
+
+.nav-active {
+    border-bottom: 2px solid var(--accent-color);
+}
+
 .nav-links {
     display: flex;
     justify-content: right;
@@ -364,5 +378,138 @@ a:active .social-icon-small {
 
     to {
         clip-path: circle(var(--clip-r, 100%) at var(--clip-x, 50%) var(--clip-y, 50%));
+    }
+}
+
+/* Terminal component */
+.terminal-container {
+    background-color: var(--box-color);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .terminal-container {
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.terminal-header {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .terminal-header {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red-dot { background-color: #ff5f56; }
+.yellow-dot { background-color: #ffbd2e; }
+.green-dot { background-color: #27c93f; }
+
+.terminal-title {
+    color: var(--accent-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin-left: 10px;
+    opacity: 0.8;
+    transition: color 0.3s ease;
+}
+
+.terminal-body {
+    padding: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.terminal-line {
+    color: var(--accent-color);
+    margin: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.terminal-prompt {
+    color: var(--action-color);
+    opacity: 0.8;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+}
+
+.terminal-error {
+    color: #ff5f56;
+    margin: 6px 0 16px 0;
+    font-weight: 600;
+}
+
+.terminal-json {
+    color: var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.12);
+    padding: 18px;
+    border-radius: 6px;
+    margin: 16px 0;
+    white-space: pre;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent-color);
+    transition: color 0.3s ease, background-color 0.3s ease, border-left-color 0.3s ease;
+}
+
+body.dark-mode .terminal-json {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.json-key {
+    color: var(--accent-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.json-string {
+    color: var(--action-color);
+    transition: color 0.3s ease;
+}
+
+.json-boolean {
+    color: #ffbd2e;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: var(--action-color);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    transition: background-color 0.3s ease;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@media screen and (max-width: 768px) {
+    .terminal-body {
+        padding: 16px;
+        font-size: 14px;
     }
 }
