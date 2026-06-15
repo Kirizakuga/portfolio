@@ -59,12 +59,19 @@
 - **Decision**: Standardize all visual elements using Google Fonts' `JetBrains Mono` and a JSON-structured information display.
 - **Reason**: Highlights the developer background and terminal-centric identity of the owner.
 
+### Decision 5: Static JSON Cache for Third-Party Data
+- **Decision**: Query user contributions collection via a scheduled GitHub Action GraphQL script that saves the result to `github-activity.json` locally, fetching it asynchronously on the main page.
+- **Reason**: Completely prevents client-side rate limits, avoids exposing PAT secrets in public JS, and allows rendering a simulated mock fallback if offline or the file is missing.
+
 ---
 
 ## File Structure
 
 ```
 portfolio-root/
+├── .github/
+│   └── workflows/
+│       └── update-activity.yml
 ├── about/
 │   └── index.html
 ├── blog/
@@ -74,6 +81,7 @@ portfolio-root/
 ├── icon/
 │   └── (custom SVGs/images)
 ├── CNAME
+├── github-activity.json
 ├── index.html
 ├── meomeo.jpg
 ├── scripts.js
@@ -96,3 +104,5 @@ portfolio-root/
 - [index.html](file:///c:/Users/karus/portfolio/index.html) - Landing page
 - [style.css](file:///c:/Users/karus/portfolio/style.css) - Global stylesheets and color tokens
 - [scripts.js](file:///c:/Users/karus/portfolio/scripts.js) - Interactive theme toggle logic
+- [update-activity.yml](file:///c:/Users/karus/portfolio/.github/workflows/update-activity.yml) - GitHub Activity update workflow
+
