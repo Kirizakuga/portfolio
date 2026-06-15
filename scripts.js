@@ -315,3 +315,161 @@ function generateMockActivity() {
     
     return { totalContributions, weeks };
 }
+
+// --- SYS-INFO WIDGET (neofetch + weather) ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('sysinfo-widget')) {
+        initSysInfo();
+        initRandomSysInfo();
+    }
+});
+
+/**
+ * Initialises the sys-info widget:
+ * - ticks the ICT clock every second
+ * - fetches live HCMC weather from Open-Meteo (no API key required)
+ */
+async function initSysInfo() {
+    // --- Live ICT clock ---
+    const timeEl = document.getElementById('sysinfo-time');
+
+    function tickClock() {
+        if (!timeEl) return;
+        const now = new Date();
+        // Render the time in Asia/Ho_Chi_Minh (UTC+7) regardless of visitor locale
+        const hhmm = now.toLocaleTimeString('en-GB', {
+            timeZone: 'Asia/Ho_Chi_Minh',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        timeEl.textContent = `${hhmm} ICT`;
+    }
+
+    tickClock();
+    setInterval(tickClock, 1000);
+
+    // --- Weather fetch from Open-Meteo (free, no key needed) ---
+    // HCMC coordinates: lat 10.8231, lon 106.6297
+    const WEATHER_URL =
+        'https://api.open-meteo.com/v1/forecast' +
+        '?latitude=10.8231&longitude=106.6297' +
+        '&current=temperature_2m,apparent_temperature,weather_code' +
+        '&temperature_unit=celsius&timezone=Asia%2FHo_Chi_Minh';
+
+    /** Maps WMO weather codes to short CLI-friendly strings */
+    function wmoToDesc(code) {
+        if (code === 0)                return 'clear sky';
+        if (code <= 2)                 return 'partly cloudy';
+        if (code === 3)                return 'overcast';
+        if (code <= 49)                return 'foggy';
+        if (code <= 57)                return 'drizzle';
+        if (code <= 67)                return 'rainy';
+        if (code <= 77)                return 'snowing';
+        if (code <= 82)                return 'showers';
+        if (code <= 86)                return 'heavy snow';
+        if (code <= 99)                return 'thunderstorm';
+        return 'unknown';
+    }
+
+    const weatherEl = document.getElementById('sysinfo-weather');
+    const tempEl    = document.getElementById('sysinfo-temp');
+    const feelsEl   = document.getElementById('sysinfo-feels');
+
+    // Put weather values into shimmer / loading state
+    [weatherEl, tempEl, feelsEl].forEach(el => el && el.classList.add('loading'));
+
+    let data;
+    try {
+        const res = await fetch(WEATHER_URL);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        data = await res.json();
+    } catch {
+        // Graceful degradation — no throw, just show unavailable
+        [weatherEl, tempEl, feelsEl].forEach(el => {
+            if (!el) return;
+            el.classList.remove('loading');
+            el.textContent = 'unavailable';
+        });
+        return;
+    }
+
+    const current = data.current;
+    const desc    = wmoToDesc(current.weather_code);
+    const temp    = Math.round(current.temperature_2m);
+    const feels   = Math.round(current.apparent_temperature);
+
+    // Remove shimmer and write values
+    if (weatherEl) {
+        weatherEl.classList.remove('loading');
+        weatherEl.textContent = `${desc} · HCMC`;
+    }
+    if (tempEl) {
+        tempEl.classList.remove('loading');
+        tempEl.textContent = `${temp}°C`;
+    }
+    if (feelsEl) {
+        feelsEl.classList.remove('loading');
+        feelsEl.textContent = `${feels}°C`;
+    }
+}
+
+// --- RANDOM SYS-INFO ROTATOR ---
+
+function initRandomSysInfo() {
+    const osEl = document.getElementById('sysinfo-os');
+    const shellEl = document.getElementById('sysinfo-shell');
+    const editorEl = document.getElementById('sysinfo-editor');
+
+    // Prevent errors if the elements aren't on the page
+    if (!osEl || !shellEl || !editorEl) return;
+
+    // 1. Define your random options
+    const osList = [
+        'arch linux (btw)', 'windoooze (still using btw)'
+    ];
+
+    const shellList = [
+        'zsh', 'bash', 'fish', 'tmux + zsh', 'sh', 'nushell'
+    ];
+
+    const editorList = [
+        'nvim', 'vim (still open)', 'nano', 'emacs',
+        'vscode', 'helix', 'ed (standard editor)', 'antigravity',
+        'javaLORANT (bruh)'
+    ];
+
+    // Helper: Pick a random item from an array
+    const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    // Helper: Generate a random delay in milliseconds
+    const getRandomDelay = () => {
+        const minMins = 3;   // Minimum 3 minutes
+        const maxMins = 180; // Maximum 3 hours (180 mins)
+
+        // Formula: random number between min and max
+        const randomMins = Math.floor(Math.random() * (maxMins - minMins + 1)) + minMins;
+
+        return randomMins * 60 * 1000; // Convert to milliseconds
+    };
+
+    function triggerRandomize() {
+        // Change the text
+        osEl.textContent = pickRandom(osList);
+        shellEl.textContent = pickRandom(shellList);
+        editorEl.textContent = pickRandom(editorList);
+
+        // Calculate the next random time and queue it up
+        const nextDelay = getRandomDelay();
+
+        // Optional: Log it to the console so you can secretly see when it will change next
+        console.log(`[SysInfo] Rotated! Next change in ${nextDelay / 60000} minutes.`);
+
+        setTimeout(triggerRandomize, nextDelay);
+    }
+
+    // Start the cycle! Wait for the first random delay before changing from your defaults
+    setTimeout(triggerRandomize, getRandomDelay());
+}

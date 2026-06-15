@@ -53,7 +53,7 @@ body {
     gap: 20px;
     width: 100%;
     height: auto;
-    align-items: flex-start;
+    align-items: stretch;
     border-radius: 10px;
 }
 
@@ -84,10 +84,18 @@ body {
 }
 
 #left-box {
+    flex: 1;
+    min-width: 0;
+}
+
+/* left column wrapper — inherits the flex:3 slot */
+.left-col {
     flex: 3;
-    min-height: 500px;
-    max-width: none;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+    justify-content: space-between;
 }
 
 #right-box {
@@ -114,6 +122,7 @@ body {
 #top-box,
 #left-box,
 #right-box,
+#sysinfo-box,
 .sub-container {
     transition: background-color 0.3s ease;
 }
@@ -397,6 +406,10 @@ a:active .social-icon-small {
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
+#right-box .terminal-body {
+    display: flex;
+    flex-direction: column;
+}
 
 body.dark-mode .terminal-container {
     border-color: rgba(0, 0, 0, 0.08);
@@ -551,7 +564,7 @@ body.dark-mode {
     background-color: var(--bg-color);
     padding: 2px;
     border-radius: 12px;
-    margin-top: 1.5rem;
+    margin-top: auto;
     position: relative;
     box-sizing: border-box;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -767,4 +780,110 @@ body.dark-mode .heatmap-tooltip {
     background: rgba(205, 192, 175, 0.75);
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Sys-Info Terminal Window
+   ========================================================================== */
+
+#sysinfo-box {
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Override terminal-body to remove default padding and use a tighter fit */
+.sysinfo-terminal-body {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Remove the two-column grid; single column fits the narrow left gutter */
+.sysinfo-grid {
+    display: contents;
+}
+
+.sysinfo-col {
+    display: contents;
+}
+
+/* Thin divider between static info and weather section */
+.sysinfo-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.06);
+    margin: 4px 0;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .sysinfo-divider {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sysinfo-row {
+    display: flex;
+    align-items: baseline;
+    line-height: 1.6;
+}
+
+.sysinfo-key {
+    color: var(--action-color);
+    min-width: 62px;
+    flex-shrink: 0;
+    font-size: 13px;
+    opacity: 0.9;
+    transition: color 0.3s ease;
+}
+
+/* "::" separator via CSS — no extra markup */
+.sysinfo-key::after {
+    content: ' ::';
+    opacity: 0.35;
+    margin-right: 8px;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+.sysinfo-val {
+    color: var(--accent-color);
+    font-size: 13px;
+    opacity: 0.85;
+    transition: color 0.3s ease, opacity 0.4s ease;
+}
+
+/* loading shimmer state */
+.sysinfo-val.loading {
+    opacity: 0.35;
+    animation: shimmer-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer-pulse {
+    0%, 100% { opacity: 0.35; }
+    50%       { opacity: 0.6; }
+}
+
+/* vertical separator — not needed in single-column; hide it */
+.sysinfo-col:last-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .left-col {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    #left-box,
+    #sysinfo-box {
+        flex: 1 1 100%;
+    }
+    .sysinfo-col:last-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 8px;
+        margin-top: 4px;
+    }
+    body.dark-mode .sysinfo-col:last-child {
+        border-top-color: rgba(0, 0, 0, 0.1);
+    }
 }
