@@ -59,12 +59,19 @@
 - **Decision**: Standardize all visual elements using Google Fonts' `JetBrains Mono` and a JSON-structured information display.
 - **Reason**: Highlights the developer background and terminal-centric identity of the owner.
 
+### Decision 5: Static JSON Cache for Third-Party Data
+- **Decision**: Query user contributions collection via a scheduled GitHub Action GraphQL script that saves the result to `github-activity.json` locally, fetching it asynchronously on the main page.
+- **Reason**: Completely prevents client-side rate limits, avoids exposing PAT secrets in public JS, and allows rendering a simulated mock fallback if offline or the file is missing.
+
 ---
 
 ## File Structure
 
 ```
 portfolio-root/
+├── .github/
+│   └── workflows/
+│       └── update-activity.yml
 ├── about/
 │   └── index.html
 ├── blog/
@@ -74,6 +81,7 @@ portfolio-root/
 ├── icon/
 │   └── (custom SVGs/images)
 ├── CNAME
+├── github-activity.json
 ├── index.html
 ├── meomeo.jpg
 ├── scripts.js
@@ -91,8 +99,29 @@ portfolio-root/
 
 ---
 
+## Implemented Features & Updates
+
+### 💻 Unix Terminal-Style UI
+* **Simulation Windows**: The landing page splits into two realistic developer terminal panels (`profile.sh` on the left, `about-me.json` on the right) complete with window titles, monospace styling, and red/yellow/green header control dots.
+* **Layout Fluidity**: Designed with responsive CSS flexbox and media queries that stack vertically on mobile while keeping clean horizontal alignment on desktop screens.
+
+### 📅 GitHub Activity Heatmap
+* **Scaled Layout**: Rendered using a larger `14px` cell grid with `4px` gaps, styled month/day headers, and horizontal scroll boundaries on mobile.
+* **Static caching**: Integrated a client-side fetch mechanism reading from a statically cached `github-activity.json` file. If the file is missing or offline, organic fallback mock data is dynamically generated.
+* **Scraper Unscrambler**: Implemented sorting logic in both the Node-based Actions script and [scripts.js](file:///c:/Users/karus/portfolio/scripts.js) to order contribution data chronologically before week parsing, resolving month column misalignment issues.
+* **Automated Cron Updates**: Designed [.github/workflows/update-activity.yml](file:///c:/Users/karus/portfolio/.github/workflows/update-activity.yml) to retrieve daily contribution statistics from the GitHub GraphQL API and write updates directly into the repository cache.
+
+### 🎨 Circular Reveal Theme Transitions
+* **Visual Polish**: Employs the View Transitions API to perform dynamic circular-reveal clipping on theme toggle, centered exactly around the click coordinate.
+* **Clean Compilation**: Declared all dynamic animation properties in `:root` inside [style.css](file:///c:/Users/karus/portfolio/style.css) to maintain 100% clean IDE static analysis checks.
+
+---
+
 ## Links to Key Files
 
 - [index.html](file:///c:/Users/karus/portfolio/index.html) - Landing page
 - [style.css](file:///c:/Users/karus/portfolio/style.css) - Global stylesheets and color tokens
 - [scripts.js](file:///c:/Users/karus/portfolio/scripts.js) - Interactive theme toggle logic
+- [update-activity.yml](file:///c:/Users/karus/portfolio/.github/workflows/update-activity.yml) - GitHub Activity update workflow
+
+

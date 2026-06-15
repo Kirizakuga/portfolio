@@ -1,0 +1,60 @@
+name: Fetch GitHub Activity JSON
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch: 
+  push:
+    branches:
+      - main 
+
+permissions:
+  contents: write 
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Data via GraphQL
+        uses: actions/github-script@v7
+        env:
+          USERNAME: ${{ github.repository_owner }} 
+        with:
+          # If permissions fail, uncomment/add PAT_TOKEN under repository secrets
+          # github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            const query = `
+              query($userName:String!) {
+                user(login: $userName){
+                  contributionsCollection {
+                    contributionCalendar {
+                      totalContributions
+                      weeks {
+                        contributionDays {
+                          contributionCount
+                          date
+                          contributionLevel
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            const variables = { userName: process.env.USERNAME };
+            const result = await github.graphql(query, variables); 
+            
+            const fs = require('fs');
+            const calendarData = result.user.contributionsCollection.contributionCalendar;
+            fs.writeFileSync('github-activity.json', JSON.stringify(calendarData, null, 2));
+
+      - name: Commit and Push JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add github-activity.json
+          git commit -m "chore: update github-activity.json" || echo "No changes to commit"
+          git push

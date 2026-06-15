@@ -1,0 +1,21 @@
+.interest-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    border-radius: 10px;
+}
+.interest-box1{
+    background-color: var(--box-color);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 50%;
+    height: auto;
+}
