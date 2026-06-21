@@ -887,3 +887,464 @@ body.dark-mode .sysinfo-divider {
         border-top-color: rgba(0, 0, 0, 0.1);
     }
 }
+
+/* ==========================================================================
+   JSON / Visual Toggle Switcher & Technology Visual Cards
+   ========================================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.terminal-toggle-container {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .terminal-toggle-container {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.toggle-tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle-tab:hover {
+    opacity: 0.9;
+    color: var(--action-color);
+}
+
+.toggle-tab.active {
+    opacity: 1;
+    background-color: var(--action-color);
+    color: var(--bg-color);
+}
+
+body.dark-mode .toggle-tab.active {
+    background-color: var(--action-color);
+    color: var(--bg-color);
+}
+
+#about-me-visual-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tech-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tech-section-title {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--action-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 6px;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .tech-section-title {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.tech-card {
+    background-color: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+}
+
+body.dark-mode .tech-card {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.04);
+}
+
+.tech-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: var(--action-color);
+    background-color: rgba(0, 0, 0, 0.18);
+}
+
+body.dark-mode .tech-card:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.tech-card:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.tech-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.tech-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.tech-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}
+
+.tech-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-color);
+    opacity: 0.65;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   Interests Subpage Styles
+   ========================================================================== */
+
+.interests-intro {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--accent-color);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.interest-card {
+    background-color: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 24px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+}
+
+body.dark-mode .interest-card {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.04);
+}
+
+.interest-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--action-color);
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+body.dark-mode .interest-card:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.interest-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.interest-card-icon {
+    font-size: 20px;
+}
+
+.interest-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--action-color);
+    margin: 0;
+}
+
+.interest-card-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent-color);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.interest-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--action-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .interest-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   Projects Subpage Styles
+   ========================================================================== */
+
+.projects-intro {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--accent-color);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.project-card {
+    background-color: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 24px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body.dark-mode .project-card {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.04);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--action-color);
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+body.dark-mode .project-card:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--action-color);
+    margin: 0;
+}
+
+.project-github-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .project-github-icon {
+    color: var(--action-color);
+}
+
+.project-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent-color);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--action-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .project-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   Blog Subpage Styles
+   ========================================================================== */
+
+.blog-intro {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--accent-color);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.blog-card {
+    background-color: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 24px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body.dark-mode .blog-card {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.04);
+}
+
+.blog-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--action-color);
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+body.dark-mode .blog-card:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.blog-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-color);
+    opacity: 0.7;
+}
+
+.blog-meta-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.blog-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--action-color);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.blog-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent-color);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.blog-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--action-color);
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .blog-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.03);
+}

@@ -473,3 +473,27 @@ function initRandomSysInfo() {
     // Start the cycle! Wait for the first random delay before changing from your defaults
     setTimeout(triggerRandomize, getRandomDelay());
 }
+
+// --- JSON / VISUAL ABOUT-ME VIEW TOGGLE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const btnJson = document.getElementById('toggle-json');
+    const btnVisual = document.getElementById('toggle-visual');
+    const viewJson = document.getElementById('about-me-json-view');
+    const viewVisual = document.getElementById('about-me-visual-view');
+
+    if (btnJson && btnVisual && viewJson && viewVisual) {
+        btnJson.addEventListener('click', () => {
+            btnJson.classList.add('active');
+            btnVisual.classList.remove('active');
+            viewJson.classList.remove('hidden');
+            viewVisual.classList.add('hidden');
+        });
+
+        btnVisual.addEventListener('click', () => {
+            btnVisual.classList.add('active');
+            btnJson.classList.remove('active');
+            viewVisual.classList.remove('hidden');
+            viewJson.classList.add('hidden');
+        });
+    }
+});
