@@ -32,6 +32,7 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     transition: background-color 0.3s ease;
 }
 
@@ -44,6 +45,7 @@ body {
     gap: 20px;
     padding: 20px;
     width: 100%;
+    max-width: 1600px;
     box-sizing: border-box;
 }
 
@@ -409,6 +411,8 @@ a:active .social-icon-small {
 #right-box .terminal-body {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
 }
 
 body.dark-mode .terminal-container {
